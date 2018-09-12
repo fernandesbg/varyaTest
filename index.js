@@ -13,6 +13,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'assets')))
 
+app.post('/session/auth', (req, res) => {
+    res.json(chatkit.authenticate(req.body, req.query.user_id))
+})
+
 app.get('/', (req, res) => {
   res.sendFile('index.html', {root: __dirname + '/views'})
 })
